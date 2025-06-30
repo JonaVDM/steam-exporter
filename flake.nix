@@ -19,7 +19,7 @@
           inherit version;
           pname = "steam-exporter";
           src = ./.;
-          vendorHash = "sha256-6ut5bThWWJr3dKcX/TjGTJn7KK0ZEoBIHX3wDhzZp6k=";
+          vendorHash = "sha256-KBHAkFkvv5BwAyn/qqCF6RMBRzyN+oi1/vECIDPA4tI=";
         };
       };
 
