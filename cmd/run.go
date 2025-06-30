@@ -37,5 +37,5 @@ func init() {
 		host = ":6718"
 	}
 
-	runCmd.Flags().StringP("host", "h", host, "The interface/port to listen on")
+	runCmd.Flags().String("host", host, "The interface/port to listen on")
 }
