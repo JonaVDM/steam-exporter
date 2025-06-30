@@ -20,3 +20,11 @@ func Execute() {
 		os.Exit(1)
 	}
 }
+
+func init() {
+	envKey := os.Getenv("STEAM_EXPORTER_KEY")
+	envUser := os.Getenv("STEAM_EXPORTER_USER")
+
+	rootCmd.PersistentFlags().StringP("key", "k", envKey, "The steam api key")
+	rootCmd.PersistentFlags().StringP("user", "u", envUser, "The steam user")
+}

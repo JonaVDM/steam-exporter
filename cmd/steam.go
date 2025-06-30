@@ -52,9 +52,6 @@ var steamGamesCmd = &cobra.Command{
 }
 
 func init() {
-	steamCmd.PersistentFlags().StringP("key", "k", "", "The steam api key")
-	steamCmd.PersistentFlags().StringP("user", "u", "", "The steam user")
-
 	steamCmd.AddCommand(steamPlayerSumCmd)
 	steamCmd.AddCommand(steamGamesCmd)
 

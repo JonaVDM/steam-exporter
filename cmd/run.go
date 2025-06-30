@@ -28,8 +28,5 @@ var runCmd = &cobra.Command{
 }
 
 func init() {
-	runCmd.PersistentFlags().StringP("key", "k", "", "The steam api key")
-	runCmd.PersistentFlags().StringP("user", "u", "", "The steam user")
-
 	rootCmd.AddCommand(runCmd)
 }
