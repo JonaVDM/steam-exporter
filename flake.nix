@@ -31,5 +31,51 @@
           ];
         };
       };
-    });
+    })
+    // {
+      nixosModules.default = {
+        config,
+        pkgs,
+        lib,
+        ...
+      }:
+        with lib; let
+          cfg = config.jo.services.steam-exporter;
+        in {
+          options.jo.services.steam-exporter = {
+            enable = mkEnableOption "Enable the Steam exporter";
+            host = mkOption {
+              type = types.string;
+              default = ":6718";
+            };
+
+            envFile = mkOption {
+              type = types.path;
+            };
+
+            userid = mkOption {
+              type = types.string;
+            };
+          };
+
+          config = mkIf cfg.enable {
+            systemd.services.steam-exporter = {
+              description = "Steam Exporter";
+              wantedBy = ["multi-user.target"];
+              environment = {
+                STEAM_EXPORTER_HOST = cfg.host;
+                STEAM_EXPORTER_USER = cfg.userid;
+              };
+
+              serviceConfig = {
+                DynamicUser = "yes";
+                ExecStart = "${self.packages.${pkgs.system}.default}/bin/steam-exporter";
+                Restart = "on-failure";
+                RestartSec = "5s";
+                EnvironmentFile = cfg.envFile;
+              };
+            };
+          };
+        };
+    };
 }
